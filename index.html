@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2025 글로벌 기후 혁신 전략</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF7F2;
+    --warm-white: #FFFDF9;
+    --ink: #1A1208;
+    --ink-light: #3D3020;
+    --gold: #C8963E;
+    --gold-light: #E8B96A;
+    --gold-pale: #F5E6C8;
+    --sage: #5B7B6F;
+    --sage-light: #8FB5A7;
+    --sage-pale: #DFF0EA;
+    --rust: #B84C2A;
+    --rust-pale: #F5DDD5;
+    --slate: #4A5568;
+    --border: rgba(200, 150, 62, 0.25);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #E8E2D9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  .nav {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    background: rgba(250,247,242,0.92);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    padding: 10px 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    z-index: 1000;
+    align-items: center;
+  }
+  .nav button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 12px;
+    color: var(--ink-light);
+    padding: 6px 14px;
+    border-radius: 30px;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+  .nav button:hover { background: var(--gold-pale); color: var(--gold); }
+  .nav .nav-dots { display: flex; gap: 6px; align-items: center; padding: 0 8px; }
+  .nav .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--sage-light);
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+  }
+  .nav .dot.active { background: var(--gold); width: 22px; border-radius: 4px; }
+
+  /* SLIDES */
+  .slide-container { width: 100%; max-width: 960px; }
+
+  .slide {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.18), 0 4px 16px rgba(0,0,0,0.08);
+    margin-bottom: 24px;
+    display: none;
+    position: relative;
+    animation: slideIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  .slide.active { display: flex; }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(16px) scale(0.985); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  /* ======================== SLIDE 1 — COVER ======================== */
+  .s1 {
+    background: var(--cream);
+    flex-direction: row;
+  }
+  .s1-left {
+    width: 52%;
+    background: var(--ink);
+    padding: 7% 6%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+  }
+  .s1-left::before {
+    content: '';
+    position: absolute;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    border: 60px solid rgba(200,150,62,0.12);
+    bottom: -80px; right: -80px;
+  }
+  .s1-left::after {
+    content: '';
+    position: absolute;
+    width: 150px; height: 150px;
+    border-radius: 50%;
+    border: 30px solid rgba(91,123,111,0.18);
+    top: -40px; left: -30px;
+  }
+  .s1-tag {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .s1-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    line-height: 1.18;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+  }
+  .s1-title em { color: var(--gold-light); font-style: italic; }
+  .s1-sub {
+    font-size: 11px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 1px;
+    line-height: 1.8;
+  }
+  .s1-right {
+    flex: 1;
+    padding: 7% 6%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 28px;
+    background: var(--cream);
+    position: relative;
+  }
+  .s1-right::before {
+    content: '2025';
+    position: absolute;
+    font-family: 'Playfair Display', serif;
+    font-size: 120px;
+    color: rgba(200,150,62,0.07);
+    right: 6%;
+    bottom: 4%;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .s1-kpi {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .s1-kpi-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    color: var(--gold);
+    font-weight: 700;
+    line-height: 1;
+  }
+  .s1-kpi-label {
+    font-size: 11px;
+    color: var(--slate);
+    letter-spacing: 0.5px;
+  }
+  .s1-divider { width: 40px; height: 1px; background: var(--border); }
+
+  /* ======================== SLIDE 2 — PROBLEM ======================== */
+  .s2 { background: var(--warm-white); flex-direction: column; padding: 6% 8%; }
+  .slide-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 5%;
+  }
+  .slide-eyebrow {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .slide-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .slide-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 72px;
+    color: rgba(200,150,62,0.1);
+    font-weight: 700;
+    line-height: 1;
+  }
+  .s2-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; flex: 1; }
+  .s2-card {
+    background: var(--cream);
+    border-radius: 12px;
+    padding: 24px 20px;
+    border-left: 3px solid var(--gold);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+  .s2-card::after {
+    content: attr(data-icon);
+    position: absolute;
+    right: 12px; top: 12px;
+    font-size: 28px;
+    opacity: 0.2;
+  }
+  .s2-card-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--rust);
+    font-weight: 700;
+  }
+  .s2-card-title { font-size: 13px; font-weight: 700; color: var(--ink); }
+  .s2-card-body { font-size: 11px; color: var(--slate); line-height: 1.7; }
+
+  /* ======================== SLIDE 3 — STRATEGY ======================== */
+  .s3 { flex-direction: row; }
+  .s3-left {
+    width: 38%;
+    background: var(--sage);
+    padding: 6%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .s3-left::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(255,255,255,0.03) 0px,
+      rgba(255,255,255,0.03) 1px,
+      transparent 1px,
+      transparent 20px
+    );
+  }
+  .s3-left .slide-eyebrow { color: rgba(255,255,255,0.6); }
+  .s3-left .slide-title { color: #fff; font-size: 26px; }
+  .s3-desc { font-size: 11px; color: rgba(255,255,255,0.7); line-height: 1.8; }
+  .s3-right {
+    flex: 1;
+    background: var(--cream);
+    padding: 5% 6%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 14px;
+  }
+  .s3-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 14px 16px;
+    border-radius: 10px;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.06);
+    transition: all 0.2s;
+  }
+  .s3-item:hover { border-color: var(--gold-light); transform: translateX(4px); }
+  .s3-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .s3-icon.green { background: var(--sage-pale); }
+  .s3-icon.gold { background: var(--gold-pale); }
+  .s3-icon.rust { background: var(--rust-pale); }
+  .s3-item-title { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 3px; }
+  .s3-item-body { font-size: 11px; color: var(--slate); line-height: 1.6; }
+
+  /* ======================== SLIDE 4 — DATA ======================== */
+  .s4 { background: var(--warm-white); flex-direction: column; padding: 5% 7%; }
+  .s4-body { flex: 1; display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px; align-items: center; }
+  .chart-wrap { display: flex; flex-direction: column; gap: 12px; }
+  .chart-bar-row { display: flex; align-items: center; gap: 10px; }
+  .chart-label { font-size: 11px; color: var(--slate); width: 60px; text-align: right; flex-shrink: 0; font-weight: 500; }
+  .chart-bar-bg { flex: 1; height: 24px; background: var(--cream); border-radius: 4px; overflow: hidden; position: relative; }
+  .chart-bar {
+    height: 100%;
+    border-radius: 4px;
+    position: relative;
+    display: flex; align-items: center; justify-content: flex-end; padding-right: 8px;
+  }
+  .chart-bar span { font-size: 10px; font-weight: 700; color: #fff; }
+  .chart-bar.b1 { background: linear-gradient(90deg, var(--sage), var(--sage-light)); width: 82%; }
+  .chart-bar.b2 { background: linear-gradient(90deg, var(--gold), var(--gold-light)); width: 67%; }
+  .chart-bar.b3 { background: linear-gradient(90deg, var(--rust), #D4714F); width: 55%; }
+  .chart-bar.b4 { background: linear-gradient(90deg, #6B7FA8, #8A9EC4); width: 44%; }
+  .chart-bar.b5 { background: linear-gradient(90deg, #A67C52, #C4A07A); width: 38%; }
+  .s4-stats { display: flex; flex-direction: column; gap: 20px; }
+  .s4-stat-box {
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .s4-stat-box.green { background: var(--sage-pale); border-left: 3px solid var(--sage); }
+  .s4-stat-box.gold { background: var(--gold-pale); border-left: 3px solid var(--gold); }
+  .s4-stat-num { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; line-height: 1; }
+  .s4-stat-box.green .s4-stat-num { color: var(--sage); }
+  .s4-stat-box.gold .s4-stat-num { color: var(--gold); }
+  .s4-stat-label { font-size: 11px; color: var(--slate); line-height: 1.5; }
+
+  /* ======================== SLIDE 5 — ROADMAP ======================== */
+  .s5 { background: var(--cream); flex-direction: column; padding: 5% 8%; }
+  .timeline { display: flex; gap: 0; flex: 1; align-items: stretch; margin-top: 4%; }
+  .tl-item { flex: 1; display: flex; flex-direction: column; gap: 0; position: relative; }
+  .tl-item:not(:last-child)::after {
+    content: '→';
+    position: absolute;
+    right: -14px;
+    top: 28px;
+    color: var(--gold-light);
+    font-size: 18px;
+    z-index: 2;
+  }
+  .tl-year {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 8px;
+    padding-left: 16px;
+  }
+  .tl-card {
+    flex: 1;
+    background: #fff;
+    border-radius: 10px;
+    padding: 18px 16px;
+    margin: 0 10px;
+    border-top: 3px solid var(--gold);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .tl-card.sage { border-top-color: var(--sage); }
+  .tl-card.rust { border-top-color: var(--rust); }
+  .tl-card.ink { border-top-color: var(--ink); }
+  .tl-phase { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; color: var(--gold); }
+  .tl-card.sage .tl-phase { color: var(--sage); }
+  .tl-card.rust .tl-phase { color: var(--rust); }
+  .tl-card.ink .tl-phase { color: var(--ink); }
+  .tl-title { font-size: 13px; font-weight: 700; color: var(--ink); }
+  .tl-body { font-size: 10.5px; color: var(--slate); line-height: 1.7; }
+  .tl-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+  .tl-tag {
+    font-size: 9px; padding: 2px 8px;
+    border-radius: 20px;
+    background: var(--gold-pale);
+    color: var(--ink-light);
+    font-weight: 500;
+  }
+  .tl-card.sage .tl-tag { background: var(--sage-pale); }
+  .tl-card.rust .tl-tag { background: var(--rust-pale); }
+
+  /* ======================== SLIDE 6 — CLOSING ======================== */
+  .s6 { flex-direction: column; background: var(--ink); position: relative; overflow: hidden; align-items: center; justify-content: center; }
+  .s6::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    border: 100px solid rgba(200,150,62,0.07);
+    top: -200px; right: -150px;
+  }
+  .s6::after {
+    content: '';
+    position: absolute;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    border: 50px solid rgba(91,123,111,0.1);
+    bottom: -80px; left: -80px;
+  }
+  .s6-inner { text-align: center; position: relative; z-index: 1; padding: 8%; }
+  .s6-eyebrow { font-size: 10px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; font-weight: 700; margin-bottom: 20px; }
+  .s6-title { font-family: 'Playfair Display', serif; font-size: 42px; color: #fff; line-height: 1.2; margin-bottom: 16px; }
+  .s6-title em { color: var(--gold-light); font-style: italic; }
+  .s6-sub { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.9; max-width: 480px; margin: 0 auto 36px; }
+  .s6-bar { width: 60px; height: 2px; background: var(--gold); margin: 0 auto 36px; }
+  .s6-chips { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .s6-chip {
+    border: 1px solid rgba(200,150,62,0.3);
+    border-radius: 30px;
+    padding: 8px 20px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.7);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  /* SLIDE COUNTER */
+  .counter {
+    text-align: center;
+    font-size: 11px;
+    color: var(--slate);
+    margin-bottom: 80px;
+    font-weight: 500;
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ======================== SLIDE 1 ======================== -->
+<div class="slide-container">
+<div class="slide s1 active" id="slide-1">
+  <div class="s1-left">
+    <div class="s1-tag">Global Report · 2025</div>
+    <div class="s1-title">글로벌 기후<br><em>혁신 전략</em><br>보고서</div>
+    <div class="s1-sub">PREPARED BY CLIMATE INNOVATION TASK FORCE<br>MAY 2025 · CONFIDENTIAL</div>
+  </div>
+  <div class="s1-right">
+    <div class="s1-kpi">
+      <div class="s1-kpi-num">$4.2T</div>
+      <div class="s1-kpi-label">2030년까지 요구되는 글로벌 기후 투자 규모</div>
+    </div>
+    <div class="s1-divider"></div>
+    <div class="s1-kpi">
+      <div class="s1-kpi-num">1.5°C</div>
+      <div class="s1-kpi-label">파리협정 기온 상승 억제 목표치</div>
+    </div>
+    <div class="s1-divider"></div>
+    <div class="s1-kpi">
+      <div class="s1-kpi-num">196개국</div>
+      <div class="s1-kpi-label">기후변화협약 참여 국가 수</div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== SLIDE 2 ======================== -->
+<div class="slide s2" id="slide-2">
+  <div class="slide-header">
+    <div>
+      <div class="slide-eyebrow">Chapter 01 · 현황 분석</div>
+      <div class="slide-title">우리는 지금<br>어디에 있는가</div>
+    </div>
+    <div class="slide-num">01</div>
+  </div>
+  <div class="s2-grid">
+    <div class="s2-card" data-icon="🌡️">
+      <div class="s2-card-num">+1.2°C</div>
+      <div class="s2-card-title">산업화 이후 평균 기온 상승</div>
+      <div class="s2-card-body">지난 10년은 기록상 가장 뜨거운 10년이었으며, 이상기후 발생 빈도는 3배 이상 증가했습니다.</div>
+    </div>
+    <div class="s2-card" data-icon="🧊">
+      <div class="s2-card-num">-13%</div>
+      <div class="s2-card-title">10년당 북극 해빙 감소율</div>
+      <div class="s2-card-body">2100년까지 북극해는 여름철 완전 해빙 상태에 이를 것으로 예측되며 해수면 상승을 가속화합니다.</div>
+    </div>
+    <div class="s2-card" data-icon="💧">
+      <div class="s2-card-num">3.7mm</div>
+      <div class="s2-card-title">연간 해수면 상승 속도</div>
+      <div class="s2-card-body">현재 속도가 지속되면 2050년까지 10억 명 이상이 해안 침수 위협에 직면하게 됩니다.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== SLIDE 3 ======================== -->
+<div class="slide s3" id="slide-3">
+  <div class="s3-left">
+    <div class="slide-eyebrow">Chapter 02 · 핵심 전략</div>
+    <div class="slide-title" style="color:#fff;">3대 혁신<br>전략 축</div>
+    <div class="s3-desc">기후위기 대응을 위한 세 가지 핵심 전략 방향을 통해 2030 탄소중립 목표를 달성합니다. 각 축은 상호 보완적으로 작동하며 시스템 전환을 이끕니다.</div>
+  </div>
+  <div class="s3-right">
+    <div class="s3-item">
+      <div class="s3-icon green">🌱</div>
+      <div>
+        <div class="s3-item-title">에너지 전환 가속화</div>
+        <div class="s3-item-body">태양광·풍력 중심의 재생에너지 확대, 에너지 저장 시스템(ESS) 고도화, 스마트 그리드 인프라 구축으로 2030년 재생에너지 비중 70% 달성을 목표합니다.</div>
+      </div>
+    </div>
+    <div class="s3-item">
+      <div class="s3-icon gold">⚡</div>
+      <div>
+        <div class="s3-item-title">산업 탈탄소화</div>
+        <div class="s3-item-body">철강·시멘트·화학 등 고탄소 산업의 수소 연료 전환, 탄소 포집·저장(CCS) 기술 상용화를 통해 산업 부문 배출량을 45% 감축합니다.</div>
+      </div>
+    </div>
+    <div class="s3-item">
+      <div class="s3-icon rust">🌿</div>
+      <div>
+        <div class="s3-item-title">자연 기반 솔루션</div>
+        <div class="s3-item-body">산림 복원, 해양 생태계 보호, 탄소 흡수원 확대를 통한 자연 기반 탄소 제거(NBS) 활성화로 연간 10억 톤 이상의 CO₂ 흡수를 실현합니다.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== SLIDE 4 ======================== -->
+<div class="slide s4" id="slide-4">
+  <div class="slide-header" style="margin-bottom:3%">
+    <div>
+      <div class="slide-eyebrow">Chapter 03 · 주요 지표</div>
+      <div class="slide-title">섹터별 배출량<br>감축 목표</div>
+    </div>
+    <div class="slide-num">03</div>
+  </div>
+  <div class="s4-body">
+    <div class="chart-wrap">
+      <div style="font-size:10px;color:var(--slate);margin-bottom:8px;letter-spacing:1px;">2030 감축 목표 달성률 (%)</div>
+      <div class="chart-bar-row">
+        <div class="chart-label">전력·열</div>
+        <div class="chart-bar-bg"><div class="chart-bar b1"><span>82%</span></div></div>
+      </div>
+      <div class="chart-bar-row">
+        <div class="chart-label">수송</div>
+        <div class="chart-bar-bg"><div class="chart-bar b2"><span>67%</span></div></div>
+      </div>
+      <div class="chart-bar-row">
+        <div class="chart-label">산업</div>
+        <div class="chart-bar-bg"><div class="chart-bar b3"><span>55%</span></div></div>
+      </div>
+      <div class="chart-bar-row">
+        <div class="chart-label">건물</div>
+        <div class="chart-bar-bg"><div class="chart-bar b4"><span>44%</span></div></div>
+      </div>
+      <div class="chart-bar-row">
+        <div class="chart-label">농업</div>
+        <div class="chart-bar-bg"><div class="chart-bar b5"><span>38%</span></div></div>
+      </div>
+      <div style="margin-top:12px; padding:10px 14px; background:var(--cream); border-radius:8px; font-size:10.5px; color:var(--slate); line-height:1.7;">
+        ※ 전력·열 부문의 재생에너지 전환이 가장 빠르게 진행 중이며, 농업 부문은 메탄 감축 기술의 상용화가 관건입니다.
+      </div>
+    </div>
+    <div class="s4-stats">
+      <div class="s4-stat-box green">
+        <div class="s4-stat-num">-43%</div>
+        <div class="s4-stat-label">2030년 목표 전체 온실가스<br>순감축률 (2019년 대비)</div>
+      </div>
+      <div class="s4-stat-box gold">
+        <div class="s4-stat-num">18M</div>
+        <div class="s4-stat-label">녹색 전환으로 창출될<br>신규 일자리 수 (글로벌)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== SLIDE 5 ======================== -->
+<div class="slide s5" id="slide-5">
+  <div class="slide-header" style="margin-bottom:0">
+    <div>
+      <div class="slide-eyebrow">Chapter 04 · 실행 로드맵</div>
+      <div class="slide-title">단계별 이행 계획</div>
+    </div>
+    <div class="slide-num">04</div>
+  </div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-year">2025</div>
+      <div class="tl-card">
+        <div class="tl-phase">Phase 1 · 기반 구축</div>
+        <div class="tl-title">제도 및 인프라 정비</div>
+        <div class="tl-body">탄소 가격제 도입, 재생에너지 인허가 절차 간소화, 기후 금융 플랫폼 구축</div>
+        <div class="tl-tags"><span class="tl-tag">탄소세</span><span class="tl-tag">RE100</span><span class="tl-tag">ESG</span></div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2027</div>
+      <div class="tl-card sage">
+        <div class="tl-phase">Phase 2 · 전환 가속</div>
+        <div class="tl-title">산업·교통 전환</div>
+        <div class="tl-body">전기차 보급률 40% 달성, 수소 파이프라인 구축, 내연기관 신차 판매 종료 로드맵 확정</div>
+        <div class="tl-tags"><span class="tl-tag">EV</span><span class="tl-tag">수소</span><span class="tl-tag">CCS</span></div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2030</div>
+      <div class="tl-card rust">
+        <div class="tl-phase">Phase 3 · 목표 달성</div>
+        <div class="tl-title">넷제로 중간 점검</div>
+        <div class="tl-body">재생에너지 70% 전환, 산업 배출 45% 감축, 자연 기반 탄소 흡수 10억 톤 실현</div>
+        <div class="tl-tags"><span class="tl-tag">탄소중립</span><span class="tl-tag">NBS</span><span class="tl-tag">SDGs</span></div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2050</div>
+      <div class="tl-card ink">
+        <div class="tl-phase">Phase 4 · 완전 전환</div>
+        <div class="tl-title">Net-Zero 경제 완성</div>
+        <div class="tl-body">전 부문 탄소중립 달성, 순배출 제로 사회 구현, 기후 회복력 강한 지속가능한 경제 체계 완성</div>
+        <div class="tl-tags"><span class="tl-tag">Net-Zero</span><span class="tl-tag">순환경제</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== SLIDE 6 ======================== -->
+<div class="slide s6" id="slide-6">
+  <div class="s6-inner">
+    <div class="s6-eyebrow">Climate Innovation Task Force · 2025</div>
+    <div class="s6-title">지구의 내일은<br><em>오늘의 선택</em>에 달려 있습니다</div>
+    <div class="s6-bar"></div>
+    <div class="s6-sub">기후위기는 위협이 아닌 전환의 기회입니다. 대담한 혁신과 협력을 통해 지속가능한 번영의 미래를 만들어 갑시다.</div>
+    <div class="s6-chips">
+      <div class="s6-chip">보고서 문의 · climate@taskforce.org</div>
+      <div class="s6-chip">발행일 · 2025년 5월</div>
+      <div class="s6-chip">Ver 3.2 · Confidential</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /slide-container -->
+
+<div class="counter" id="counter">1 / 6</div>
+
+<!-- NAV -->
+<div class="nav">
+  <button onclick="changeSlide(-1)">← 이전</button>
+  <div class="nav-dots" id="nav-dots"></div>
+  <button onclick="changeSlide(1)">다음 →</button>
+</div>
+
+<script>
+  const total = 6;
+  let current = 1;
+
+  const dotsWrap = document.getElementById('nav-dots');
+  for (let i = 1; i <= total; i++) {
+    const d = document.createElement('button');
+    d.className = 'dot' + (i === 1 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    dotsWrap.appendChild(d);
+  }
+
+  function goTo(n) {
+    document.getElementById('slide-' + current).classList.remove('active');
+    dotsWrap.children[current - 1].classList.remove('active');
+    current = Math.max(1, Math.min(total, n));
+    document.getElementById('slide-' + current).classList.add('active');
+    dotsWrap.children[current - 1].classList.add('active');
+    document.getElementById('counter').textContent = current + ' / ' + total;
+  }
+
+  function changeSlide(dir) { goTo(current + dir); }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') changeSlide(1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') changeSlide(-1);
+  });
+</script>
+</body>
+</html>
