@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>관세청 민원상담 FAQ</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0e1a;
+  --surface: #111827;
+  --surface2: #1a2236;
+  --border: #1e2d45;
+  --accent: #00d4ff;
+  --accent2: #7c3aed;
+  --accent3: #10b981;
+  --text: #e2e8f0;
+  --muted: #64748b;
+  --dim: #94a3b8;
+  --warn: #f59e0b;
+  --r: 12px;
+  --r2: 8px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Noto Sans KR',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+}
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:
+    linear-gradient(rgba(0,212,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,212,255,.025) 1px,transparent 1px);
+  background-size:40px 40px;
+  pointer-events:none;z-index:0;
+}
+
+/* ═══ HEADER ═══ */
+header{
+  position:sticky;top:0;z-index:200;
+  background:rgba(10,14,26,.95);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.hdr{
+  max-width:1400px;margin:0 auto;
+  display:flex;align-items:center;
+  gap:12px;height:60px;padding:0 16px;
+}
+.logo{
+  display:flex;align-items:center;gap:8px;
+  text-decoration:none;flex-shrink:0;cursor:pointer;
+  background:none;border:none;color:inherit;
+}
+.logo-icon{
+  width:34px;height:34px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  border-radius:8px;display:flex;align-items:center;
+  justify-content:center;font-size:17px;
+  box-shadow:0 0 14px rgba(0,212,255,.3);
+  flex-shrink:0;
+}
+.logo-txt{font-size:14px;font-weight:700;white-space:nowrap}
+.logo-sub{font-size:10px;color:var(--muted);font-weight:300}
+
+/* 헤더 검색 — flex row, input+버튼 나란히 */
+.hdr-search{
+  flex:1;display:none;align-items:center;gap:8px;
+  max-width:560px;margin:0 auto;
+}
+.hdr-search.visible{
+  display:flex;
+}
+.hdr-input-wrap{
+  position:relative;flex:1;min-width:0;
+}
+.hdr-input-wrap input{
+  display:block;width:100%;
+  background:var(--surface2);
+  border:1.5px solid var(--border);
+  border-radius:30px;
+  /* 충분한 padding, 버튼과 겹치지 않음 */
+  padding:9px 16px 9px 38px;
+  font-family:'Noto Sans KR',sans-serif;
+  font-size:14px;
+  color:var(--text) !important;
+  -webkit-text-fill-color:var(--text) !important;
+  outline:none;
+  transition:border-color .2s,box-shadow .2s;
+  -webkit-appearance:none;
+  appearance:none;
+}
+.hdr-input-wrap input:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(0,212,255,.12);
+}
+.hdr-input-wrap input::placeholder{
+  color:var(--muted);
+  -webkit-text-fill-color:var(--muted);
+  opacity:1;
+}
+.hdr-input-wrap .si{
+  position:absolute;left:12px;top:50%;
+  transform:translateY(-50%);
+  color:var(--muted);font-size:15px;
+  pointer-events:none;user-select:none;
+  z-index:1;
+}
+.hdr-btn{
+  flex-shrink:0;
+  background:linear-gradient(135deg,var(--accent),#0099cc);
+  border:none;border-radius:30px;
+  color:#000;font-family:'Noto Sans KR',sans-serif;
+  font-size:13px;font-weight:700;
+  padding:9px 18px;cursor:pointer;
+  transition:all .2s;white-space:nowrap;
+}
+.hdr-btn:hover{
+  background:linear-gradient(135deg,#5ee7ff,var(--accent));
+  box-shadow:0 0 12px rgba(0,212,255,.4);
+}
+.hdr-badge{
+  flex-shrink:0;
+  font-size:11px;color:var(--accent);
+  background:rgba(0,212,255,.08);
+  border:1px solid rgba(0,212,255,.2);
+  border-radius:20px;padding:4px 10px;
+  white-space:nowrap;
+}
+
+/* ═══ LAYOUT ═══ */
+.wrap{
+  max-width:1400px;margin:0 auto;
+  display:grid;grid-template-columns:220px 1fr;
+  position:relative;z-index:1;
+  min-height:calc(100vh - 60px);
+}
+
+/* ═══ SIDEBAR ═══ */
+.sidebar{
+  border-right:1px solid var(--border);
+  padding:20px 12px;
+  position:sticky;top:60px;
+  height:calc(100vh - 60px);
+  overflow-y:auto;
+  scrollbar-width:thin;
+  scrollbar-color:var(--border) transparent;
+}
+.sidebar::-webkit-scrollbar{width:4px}
+.sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+.sb-title{
+  font-size:10px;font-weight:700;
+  letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--muted);padding:0 8px;
+  margin-bottom:8px;
+}
+.sb-title+.sb-title{margin-top:18px}
+.cat-btn{
+  display:flex;align-items:center;justify-content:space-between;
+  width:100%;padding:8px 10px;
+  border-radius:var(--r2);
+  background:transparent;border:none;
+  cursor:pointer;font-family:'Noto Sans KR',sans-serif;
+  font-size:13px;color:var(--dim);text-align:left;
+  transition:all .15s;gap:6px;
+}
+.cat-btn:hover{background:var(--surface2);color:var(--text)}
+.cat-btn.active{
+  background:rgba(0,212,255,.1);color:var(--accent);
+  border:1px solid rgba(0,212,255,.2);
+}
+.cat-lbl{flex:1}
+.cat-cnt{
+  font-size:10px;color:var(--muted);
+  background:var(--surface2);
+  border-radius:10px;padding:1px 7px;flex-shrink:0;
+  font-variant-numeric:tabular-nums;
+}
+.cat-btn.active .cat-cnt{
+  background:rgba(0,212,255,.15);color:var(--accent);
+}
+
+/* ═══ MAIN ═══ */
+.main{padding:20px;min-width:0}
+/* ─ HERO ─ */
+.hero{
+  text-align:center;padding:48px 16px 36px;
+  animation:fadeIn .4s ease;
+}
+.hero-lbl{
+  display:inline-block;
+  font-size:11px;color:var(--accent);
+  letter-spacing:1.5px;text-transform:uppercase;
+  background:rgba(0,212,255,.08);
+  border:1px solid rgba(0,212,255,.2);
+  border-radius:20px;padding:4px 14px;margin-bottom:18px;
+}
+.hero h1{
+  font-size:clamp(26px,4vw,42px);
+  font-weight:900;letter-spacing:-1px;line-height:1.2;
+  margin-bottom:10px;
+  background:linear-gradient(135deg,#fff 30%,var(--accent));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero p{font-size:14px;color:var(--muted);margin-bottom:28px;line-height:1.8;max-width:560px;margin-left:auto;margin-right:auto;}
+
+/* 히어로 검색창 — position:relative 로 명확히 */
+.hero-search-wrap{
+  position:relative;max-width:540px;margin:0 auto 24px;
+  display:flex;align-items:stretch;gap:0;
+}
+.hero-search-input-wrap{
+  position:relative;flex:1;
+}
+.hero-search-input-wrap input{
+  display:block;width:100%;height:100%;
+  background:var(--surface);
+  border:1.5px solid var(--border);
+  border-radius:14px 0 0 14px;
+  padding:13px 13px 13px 46px;
+  font-family:'Noto Sans KR',sans-serif;
+  font-size:14px;color:var(--text);
+  outline:none;
+  transition:border-color .25s,box-shadow .25s;
+  box-shadow:0 4px 24px rgba(0,0,0,.4);
