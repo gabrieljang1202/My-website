@@ -2010,7 +2010,7 @@ function drawerCat(cat) {
 
 <!-- ③ Groq AI 챗봇 로직 -->
 <script>
-  const GROQ_API_KEY  = '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';
+  const WORKER_URL    = 'https://wild-fog-e6cd.gabrieljang12023.workers.dev';
   const GROQ_MODEL    = 'llama-3.3-70b-versatile';
   const SYSTEM_PROMPT = `당신은 관세청 민원상담 전문 FAQ 챗봇입니다.
 반드시 [관련 FAQ] 내용만을 근거로 답변하세요.
@@ -2117,15 +2117,11 @@ function drawerCat(cat) {
         `[FAQ ${i + 1}]\n카테고리: ${item[1]}\n질문: ${item[2]}\n답변: ${item[3]}`
       ).join('\n\n');
 
-      const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      const res = await fetch(WORKER_URL, {
         method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${GROQ_API_KEY}`,
-          'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           model: GROQ_MODEL,
-          stream: true,
           messages: [
             { role: 'system', content: SYSTEM_PROMPT },
             { role: 'user',   content: `[관련 FAQ]\n${faqContext}\n\n사용자 질문: ${q}` }
@@ -2135,25 +2131,8 @@ function drawerCat(cat) {
 
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
-      const reader  = res.body.getReader();
-      const decoder = new TextDecoder();
-
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        for (const line of decoder.decode(value).split('\n')) {
-          if (!line.startsWith('data: ')) continue;
-          const data = line.slice(6).trim();
-          if (data === '[DONE]') break;
-          try {
-            const delta = JSON.parse(data).choices?.[0]?.delta?.content;
-            if (delta) {
-              loadingEl.textContent += delta;
-              msgs.scrollTop = msgs.scrollHeight;
-            }
-          } catch {}
-        }
-      }
+      const data = await res.json();
+      loadingEl.textContent = data.choices?.[0]?.message?.content || '답변을 가져오지 못했습니다.';
     } catch (err) {
       loadingEl.className = 'cb-msg bot error';
       loadingEl.textContent = '오류가 발생했습니다. 잠시 후 다시 시도해 주세요.';
